@@ -18,11 +18,11 @@ function About() {
             
             <div className="flex justify-center  md:justify-center ">
               {/* GitHub Button */}
-              <a href="https://github.com/CaptainMASUD" target="_blank" rel="noopener noreferrer" className="bg-gray-800 flex flex-row text-white font-bold py-2 px-4 rounded hover:bg-gray-900 mr-4">
+              <a href="https://github.com/CaptainMASUD" target="_blank" rel="noopener noreferrer" className="bg-gray-800 duration-500 flex flex-row text-white font-bold py-2 px-4 rounded hover:bg-gray-900 mr-4">
                 <img className='w-6 h-6' src={github} alt="" /> &nbsp; GitHub
               </a>
               {/* Contact Button */}
-              <a href="mailto:masudulalam972@gmail.com" className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white w-24 text-center hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded ">
+              <a href="mailto:masudulalam972@gmail.com" className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white w-24 text-center hover:border-transparent drop-shadow-md font-bold py-2 px-4 h-10 mx-auto w-32 rounded ">
                 Contact
               </a>
             </div>
