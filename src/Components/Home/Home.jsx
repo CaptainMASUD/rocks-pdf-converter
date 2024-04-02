@@ -1,3 +1,5 @@
+// Home.js
+
 import React, { useState } from 'react';
 import ImageUploader from '../ImageUploader';
 import PdfConverter from '../PdfConverter';
@@ -36,15 +38,15 @@ function Home() {
       setShowModal(true);
       return;
     }
-
+  
     setLoading(true);
     let currentProgress = 0;
     const increment = 100 / images.length;
-
+  
     const interval = setInterval(() => {
       currentProgress += increment;
       setProgress(Math.min(currentProgress, 100));
-
+  
       if (currentProgress >= 100) {
         clearInterval(interval);
         setTimeout(() => {
@@ -55,7 +57,7 @@ function Home() {
             }
             const imgWidth = doc.internal.pageSize.getWidth();
             const imgHeight = doc.internal.pageSize.getHeight();
-            doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight);
+            doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight, '', 'FAST', 0); // Set rotation to 0
           });
           const blob = doc.output('blob');
           setLoading(false);
@@ -65,6 +67,7 @@ function Home() {
       }
     }, 200);
   };
+  
 
   const handleDownloadPdf = () => {
     if (pdfBlob && pdfFilename) {
@@ -92,7 +95,7 @@ function Home() {
     <div className=''>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-4 text-white text-center">Image to PDF Converter</h1>
-        <ImageUploader onImagesChange={handleImagesChange} />
+        {!loading && <ImageUploader onImagesChange={handleImagesChange} />}
         <div className="flex justify-center mt-4">
           <button
             type="button"
@@ -148,7 +151,7 @@ function Home() {
           </div>
         )}
         {images.length === 0 && !loading && <p className="mt-4 text-center text-white">No images uploaded or added.</p>}
-        {images.length > 0 && !loading && <PdfConverter images={images} />}
+        {!loading && images.length > 0 && <PdfConverter images={images} />}
       </div>
       {showModal && <Modal message="Please upload or add images before converting to PDF." onClose={() => setShowModal(false)} />}
     </div>
