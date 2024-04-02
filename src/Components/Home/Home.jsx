@@ -1,5 +1,3 @@
-// Home.js
-
 import React, { useState } from 'react';
 import ImageUploader from '../ImageUploader';
 import PdfConverter from '../PdfConverter';
@@ -38,15 +36,15 @@ function Home() {
       setShowModal(true);
       return;
     }
-  
+
     setLoading(true);
     let currentProgress = 0;
     const increment = 100 / images.length;
-  
+
     const interval = setInterval(() => {
       currentProgress += increment;
       setProgress(Math.min(currentProgress, 100));
-  
+
       if (currentProgress >= 100) {
         clearInterval(interval);
         setTimeout(() => {
@@ -67,8 +65,6 @@ function Home() {
       }
     }, 200);
   };
-  
-  
 
   const handleDownloadPdf = () => {
     if (pdfBlob && pdfFilename) {
@@ -92,11 +88,15 @@ function Home() {
     setErrorMessage('');
   };
 
+  const handleCreateMorePdf = () => {
+    window.location.reload(); // Reload the page
+  };
+
   return (
     <div className=''>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-4 text-white text-center">Image to PDF Converter</h1>
-        {!loading && <ImageUploader onImagesChange={handleImagesChange} />}
+        <ImageUploader onImagesChange={handleImagesChange} />
         <div className="flex justify-center mt-4">
           <button
             type="button"
@@ -149,10 +149,19 @@ function Home() {
               </svg>&nbsp;
               Download PDF
             </button>
+            <button
+              className="bg-[#824D74] text-white flex flex-row hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
+              onClick={handleCreateMorePdf}
+            >
+              Create More PDF&nbsp; <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+</svg>
+
+            </button>
           </div>
         )}
         {images.length === 0 && !loading && <p className="mt-4 text-center text-white">No images uploaded or added.</p>}
-        {!loading && images.length > 0 && <PdfConverter images={images} />}
+        {images.length > 0 && !loading && <PdfConverter images={images} />}
       </div>
       {showModal && <Modal message="Please upload or add images before converting to PDF." onClose={() => setShowModal(false)} />}
     </div>
