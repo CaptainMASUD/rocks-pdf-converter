@@ -24,18 +24,16 @@ function Home() {
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [newPdfFilename, setNewPdfFilename] = useState('');
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [showModal, setShowModal] = useState(false);
 
   const handleImagesChange = (newImages) => {
     setImages(newImages);
-    // Clear error message when images are uploaded
     setErrorMessage('');
   };
 
   const handleConvertToPdf = () => {
     if (images.length === 0) {
-      
-      setShowModal(true); // Show modal when no images are selected
+      setShowModal(true);
       return;
     }
 
@@ -55,15 +53,17 @@ function Home() {
             if (index !== 0) {
               doc.addPage();
             }
-            doc.addImage(image, 'JPEG', 10, 10, 190, 150);
+            const imgWidth = doc.internal.pageSize.getWidth();
+            const imgHeight = doc.internal.pageSize.getHeight();
+            doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight);
           });
           const blob = doc.output('blob');
           setLoading(false);
-          setPdfFilename('converted_images.pdf'); // Set the filename when conversion is complete
+          setPdfFilename('converted_images.pdf');
           setPdfBlob(blob);
-        }, 1000); // Simulating conversion delay
+        }, 1000);
       }
-    }, 200); // Simulating progress update interval
+    }, 200);
   };
 
   const handleDownloadPdf = () => {
@@ -79,14 +79,13 @@ function Home() {
 
   const handleRenamePdf = () => {
     if (newPdfFilename.trim() === '') {
-    setErrorMessage('Please enter a valid filename.');
+      setErrorMessage('Please enter a valid filename.');
       return;
     }
 
-    setPdfFilename(newPdfFilename.trim() + '.pdf'); // Set the new PDF filename
-    setNewPdfFilename(''); // Clear the input field
-    setErrorMessage(''); // Clear the error message
-    
+    setPdfFilename(newPdfFilename.trim() + '.pdf');
+    setNewPdfFilename('');
+    setErrorMessage('');
   };
 
   return (
@@ -140,10 +139,10 @@ function Home() {
             <button
               className="bg-[#824D74] text-white flex flex-row hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
               onClick={handleDownloadPdf}
-            ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-            <path fillRule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
-          </svg>&nbsp;
-          
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                <path fillRule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V3a.75.75 0 0 1 .75-.75Zm-9 13.5a.75.75 0 0 1 .75.75v2.25a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V16.5a.75.75 0 0 1 1.5 0v2.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V16.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
+              </svg>&nbsp;
               Download PDF
             </button>
           </div>
