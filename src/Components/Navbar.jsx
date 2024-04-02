@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <img className="w-9 h-9 mr-2" src={p} alt="" />
-            <p className="text-white text-xl" style={{ fontFamily: "Dancing Script, cursive" }}>RHM PDF Converter</p>
+            <NavLink to='/' className="text-white text-xl" style={{ fontFamily: "Dancing Script, cursive" }}>RHM PDF Converter</NavLink>
           </div>
           <div className="hidden md:flex">
             <NavLink
