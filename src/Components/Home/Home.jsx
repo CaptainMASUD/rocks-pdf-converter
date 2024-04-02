@@ -56,8 +56,8 @@ function Home() {
               doc.addPage();
             }
             const imgWidth = doc.internal.pageSize.getWidth();
-            const imgHeight = doc.internal.pageSize.getHeight();
-            doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight, '', 'FAST', 0); // Set rotation to 0
+            const imgHeight = (imgWidth * 16) / 9; // Maintain 9:16 aspect ratio
+            doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight);
           });
           const blob = doc.output('blob');
           setLoading(false);
@@ -67,6 +67,7 @@ function Home() {
       }
     }, 200);
   };
+  
   
 
   const handleDownloadPdf = () => {
