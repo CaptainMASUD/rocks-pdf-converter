@@ -25,6 +25,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [newPdfFilename, setNewPdfFilename] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [conversionCompleted, setConversionCompleted] = useState(false); // State variable to track conversion completion
 
   const handleImagesChange = (newImages) => {
     setImages(newImages);
@@ -61,6 +62,7 @@ function Home() {
           setLoading(false);
           setPdfFilename('converted_images.pdf');
           setPdfBlob(blob);
+          setConversionCompleted(true); // Set conversion completion flag
         }, 1000);
       }
     }, 200);
@@ -88,31 +90,29 @@ function Home() {
     setErrorMessage('');
   };
 
-  const handleCreateMorePdf = () => {
-    window.location.reload(); // Reload the page
-  };
-
   return (
     <div className=''>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-4 text-white text-center">Image to PDF Converter</h1>
-        <ImageUploader onImagesChange={handleImagesChange} />
-        <div className="flex justify-center mt-4">
-          <button
-            type="button"
-            className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded flex items-center"
-            onClick={handleConvertToPdf}
-            disabled={loading}
-          >
-            {loading && (
-              <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                {/* Insert SVG animation */}
-              </svg>
-            )}
-            {loading ? 'Processing...' : 'Convert to PDF'}
-          </button>
-        </div>
-       
+        {!conversionCompleted && <ImageUploader onImagesChange={handleImagesChange} />}
+        {!conversionCompleted && (
+          <div className="flex justify-center mt-4">
+            <button
+              type="button"
+              className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded flex items-center"
+              onClick={handleConvertToPdf}
+              disabled={loading}
+            >
+              {loading && (
+                <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                  {/* Insert SVG animation */}
+                </svg>
+              )}
+              {loading ? 'Processing...' : 'Convert to PDF'}
+            </button>
+          </div>
+        )}
+
         {pdfFilename && (
           <div className="mt-4 grid place-content-center ">
             <p className='text-white text-center mt-5 mb-3 font-bold'>PDF File Name: <span className='underline cursor-pointer'>{pdfFilename}</span></p>
@@ -151,12 +151,9 @@ function Home() {
             </button>
             <button
               className="bg-[#824D74] text-white flex flex-row hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
-              onClick={handleCreateMorePdf}
+              onClick={() => window.location.reload()}
             >
-              Create More PDF&nbsp; <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-</svg>
-
+              Create More PDF
             </button>
           </div>
         )}
