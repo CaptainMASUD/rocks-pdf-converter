@@ -72,7 +72,7 @@ const Navbar = () => {
   <NavLink
     to="/"
     exact
-    className={`block border border-[#704264] text-center w-96 p-1 hover:border-transparent duration-500 rounded-full  text-white ${
+    className={`block border border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full  text-white ${
       location.pathname === '/' ? 'bg-gray-700' : 'hover:bg-gray-700'
     }`}
     onClick={() => setIsMenuOpen(false)}
@@ -81,7 +81,7 @@ const Navbar = () => {
   </NavLink>
   <NavLink
     to="/features"
-    className={`block border mt-2 border-[#704264] text-center w-96 p-1 hover:border-transparent duration-500 rounded-full text-white ${
+    className={`block border mt-2 border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${
       location.pathname === '/features' ? 'bg-gray-700' : 'hover:bg-gray-700'
     }`}
     onClick={() => setIsMenuOpen(false)}
@@ -90,7 +90,7 @@ const Navbar = () => {
   </NavLink>
   <NavLink
     to="/about"
-    className={`block border mt-2 mb-3 border-[#704264] text-center w-96 p-1 hover:border-transparent duration-500 rounded-full text-white ${
+    className={`block border mt-2 mb-3 border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${
       location.pathname === '/about' ? 'bg-gray-700' : 'hover:bg-gray-700'
     }`}
     onClick={() => setIsMenuOpen(false)}
