@@ -1,10 +1,10 @@
 import React from 'react';
-import masud from '../../images/masud.png';
 import github from '../../images/github.png';
+let masud = "https://avatars.githubusercontent.com/u/108082819?v=4"
 
 function About() {
   return (
-    <div className="container mx-auto px-4 py-8 max-w-md"> {/* Reduced max width to md */}
+    <div className="container mx-auto px-4 py-8 max-w-md duration-500"> {/* Reduced max width to md */}
       <div className="bg-[#704264] rounded-lg shadow-lg p-6 ">
         <div className="flex items-center justify-center flex-col  ">
           {/* Profile Image */}

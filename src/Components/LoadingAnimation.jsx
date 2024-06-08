@@ -1,21 +1,36 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaSpinner } from 'react-icons/fa';
 
 const LoadingAnimation = ({ progress }) => {
-  // Convert progress to an integer
   const integerProgress = Math.round(progress);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-4 rounded shadow w-64 flex items-center">
-        <svg className="animate-spin h-5 w-5 mr-3 text-indigo-500" viewBox="0 0 24 24">
-          {/* SVG animation */}
-        </svg>
-        <p className="text-indigo-500">Processing...</p>
-        <div className="bg-gray-200 h-2 ml-auto w-1/2 rounded-full mx-4">
-          <div className="bg-indigo-500 h-full" style={{ width: `${progress}%` }}></div>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center space-y-4"
+      >
+        <motion.div
+          className="text-indigo-500"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 0.75, repeat: Infinity, ease: "linear" }}
+        >
+          <FaSpinner className="w-12 h-12" />
+        </motion.div>
+        <p className="text-indigo-500 text-base font-medium">Processing...</p>
+        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+          <motion.div
+            className="bg-indigo-500 h-full"
+            initial={{ width: '0%' }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.5 }}
+          />
         </div>
-        <p className="text-indigo-500">{integerProgress}%</p>
-      </div>
+        <p className="text-indigo-500 text-base font-medium">{integerProgress}%</p>
+      </motion.div>
     </div>
   );
 };

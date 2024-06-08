@@ -3,6 +3,7 @@ import ImageUploader from '../ImageUploader';
 import PdfConverter from '../PdfConverter';
 import LoadingAnimation from '../LoadingAnimation'; 
 import jsPDF from 'jspdf';
+import { motion } from 'framer-motion';
 
 function Modal({ message, onClose }) {
   return (
@@ -25,7 +26,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [newPdfFilename, setNewPdfFilename] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [conversionCompleted, setConversionCompleted] = useState(false); // State variable to track conversion completion
+  const [conversionCompleted, setConversionCompleted] = useState(false);
 
   const handleImagesChange = (newImages) => {
     setImages(newImages);
@@ -55,14 +56,14 @@ function Home() {
               doc.addPage();
             }
             const imgWidth = doc.internal.pageSize.getWidth();
-            const imgHeight = (imgWidth * 16) / 9; // Maintain 9:16 aspect ratio
+            const imgHeight = (imgWidth * 16) / 9;
             doc.addImage(image, 'JPEG', 0, 0, imgWidth, imgHeight);
           });
           const blob = doc.output('blob');
           setLoading(false);
           setPdfFilename('converted_images.pdf');
           setPdfBlob(blob);
-          setConversionCompleted(true); // Set conversion completion flag
+          setConversionCompleted(true);
         }, 1000);
       }
     }, 200);
@@ -91,7 +92,13 @@ function Home() {
   };
 
   return (
-    <div className=''>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
+      className=''
+    >
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-4 text-white text-center">Image to PDF Converter</h1>
         {!conversionCompleted && <ImageUploader onImagesChange={handleImagesChange} />}
@@ -161,7 +168,7 @@ function Home() {
         {images.length > 0 && !loading && <PdfConverter images={images} />}
       </div>
       {showModal && <Modal message="Please upload or add images before converting to PDF." onClose={() => setShowModal(false)} />}
-    </div>
+    </motion.div>
   );
 }
 
