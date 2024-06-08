@@ -1,57 +1,65 @@
 import React from 'react';
+import { FaFilePdf, FaImages, FaEye, FaDownload, FaEdit, FaMousePointer } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
-function Feature() {
+const Feature = () => {
+  const featureData = [
+    { title: "Convert Images to PDF", description: "Easily convert multiple images into a single PDF document with just a few clicks.", icon: FaFilePdf },
+    { title: "Rename PDF", description: "Rename the generated PDF file to your preferred name before downloading it.", icon: FaEdit },
+    { title: "View Selected Files", description: "View the list of selected images before converting them to PDF to ensure accuracy.", icon: FaEye },
+    { title: "Download PDF", description: "Download the converted PDF document to your device for easy access and sharing.", icon: FaDownload },
+    { title: "Drag and Drop Images", description: "User can drag and drop the images to add them.", icon: FaMousePointer },
+  ];
+
   return (
     <div className="container mx-auto px-4 py-8 duration-500">
-      <h2 className="text-3xl font-bold mb-4 text-white text-center">Features</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Feature 1: Convert images to PDF */}
-        <div className="bg-[#824D74] p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4 text-white">Convert Images to PDF</h3>
-          <p className="text-lg text-gray-300">
-            Easily convert multiple images into a single PDF document with just a few clicks.
-          </p>
-        </div>
-        {/* Feature 2: Rename PDF */}
-        <div className="bg-[#824D74] p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4 text-white">Rename PDF</h3>
-          <p className="text-lg text-gray-300">
-            Rename the generated PDF file to your preferred name before downloading it.
-          </p>
-        </div>
-        {/* Feature 3: View Selected Files */}
-        <div className="bg-[#824D74] p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4 text-white">View Selected Files</h3>
-          <p className="text-lg text-gray-300">
-            View the list of selected images before converting them to PDF to ensure accuracy.
-          </p>
-        </div>
-        {/* Feature 4: Download PDF */}
-        <div className="bg-[#824D74] p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4 text-white">Download PDF</h3>
-          <p className="text-lg text-gray-300">
-            Download the converted PDF document to your device for easy access and sharing.
-          </p>
-        </div>
-        {/* Feature 5: darg and drop PDF */}
-        <div className="bg-[#824D74] p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-4 text-white">Drag and Drop Images</h3>
-          <p className="text-lg text-gray-300">
-            User can drag and drop the images to add them.
-          </p>
-        </div>
-      </div>
-      <div className="mt-8 text-white">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-3xl font-bold mb-4 text-white text-center"
+      >
+        Features
+      </motion.h2>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0, scale: 0.8 },
+          visible: { opacity: 1, scale: 1, transition: { delay: 0.1, duration: 0.5 } }
+        }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        {featureData.map((feature, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.5 }}
+            className="bg-[#824D74] p-6 rounded-lg shadow-lg"
+          >
+            <feature.icon className="text-white text-3xl mb-4" />
+            <h3 className="text-2xl font-semibold mb-4 text-white">{feature.title}</h3>
+            <p className="text-lg text-gray-300">{feature.description}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="mt-8 text-white"
+      >
         <h2 className="text-3xl font-bold mb-4">How to Use</h2>
         <ul className="list-disc pl-6">
           <li>Upload or add images using the "Upload Images" button.</li>
           <li>Click on "Convert to PDF" button to convert the uploaded images into a PDF document.</li>
-          <li>If needed, rename the PDF file by entering a new filename and clicking on "Rename" button.</li>
-          <li>Once the conversion is complete, click on "Download PDF" button to download the generated PDF file.</li>
+          <li>If needed, rename the PDF file by entering a new filename and clicking on the "Rename" button.</li>
+          <li>Once the conversion is complete, click on the "Download PDF" button to download the generated PDF file.</li>
         </ul>
-      </div>
+      </motion.div>
     </div>
   );
-}
+};
 
 export default Feature;
