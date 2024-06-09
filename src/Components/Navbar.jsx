@@ -117,21 +117,21 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 exact
-                className={`block border border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                className={`block border border-[#3e4d54] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaHome className="inline mr-1" /> Home
               </NavLink>
               <NavLink
                 to="/features"
-                className={`block border mt-2 border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/features' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                className={`block border mt-2 border-[#3e4d54] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/features' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaList className="inline mr-1" /> Features
               </NavLink>
               <NavLink
                 to="/about"
-                className={`block border mt-2 mb-3 border-[#704264] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/about' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
+                className={`block border mt-2 mb-3 border-[#3e4d54] text-center w-80 p-1 hover:border-transparent duration-500 rounded-full text-white ${location.pathname === '/about' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <FaInfoCircle className="inline mr-1" /> About
