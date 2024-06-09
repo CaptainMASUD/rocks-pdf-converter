@@ -17,7 +17,7 @@ const About = () => {
         initial={{ y: -20 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="bg-[#704264] rounded-lg shadow-lg p-6"
+        className="bg-[#52595d] rounded-lg shadow-lg p-6"
       >
         <div className="flex flex-col items-center">
           {/* Profile Image */}
@@ -49,7 +49,7 @@ const About = () => {
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 href="mailto:masudulalam972@gmail.com"
-                className="bg-[#824D74] flex items-center text-white hover:bg-[#9B3922] duration-500 border border-white text-center hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded"
+                className="bg-[#3e4d54] flex items-center text-white hover:bg-[#6c7b88] duration-500 border border-white text-center hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded"
               >
                 <FaEnvelope className="mr-2" />
                 Contact

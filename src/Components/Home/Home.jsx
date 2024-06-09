@@ -9,9 +9,9 @@ function Modal({ message, onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-10">
       <div className="absolute inset-0 bg-gray-900 opacity-50 transition-opacity duration-500"></div>
-      <div className="bg-[#704264] p-6 rounded-lg z-20 text-center">
+      <div className="bg-[#3e4d54] p-6 rounded-lg z-20 text-center">
         <p className="text-lg font-semibold text-white">{message}</p>
-        <button onClick={onClose} className="bg-[#704264] text-white hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded-lg mt-4">Close</button>
+        <button onClick={onClose} className="bg-[#3e4d54] text-white hover:bg-[#6c7b88] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded-lg mt-4">Close</button>
       </div>
     </div>
   );
@@ -106,7 +106,7 @@ function Home() {
           <div className="flex justify-center mt-4">
             <button
               type="button"
-              className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded flex items-center"
+              className="bg-[#3e4d54] text-white hover:bg-[#6c7b88] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded flex items-center"
               onClick={handleConvertToPdf}
               disabled={loading}
             >
@@ -133,7 +133,7 @@ function Home() {
               />
               
               <button
-                className="bg-[#824D74] text-white hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded"
+                className="bg-[#3e4d54] text-white hover:bg-[#6c7b88] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded"
                 onClick={handleRenamePdf}
               >
                 Rename
@@ -148,7 +148,7 @@ function Home() {
         {pdfFilename && !loading && (
           <div className="mt-4 grid place-content-center">
             <button
-              className="bg-[#824D74] text-white flex flex-row hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
+              className="bg-[#3e4d54] text-white flex flex-row hover:bg-[#6c7b88] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
               onClick={handleDownloadPdf}
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -157,7 +157,7 @@ function Home() {
               Download PDF
             </button>
             <button
-              className="bg-[#824D74] text-white flex flex-row hover:bg-[#9B3922] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
+              className="bg-[#3e4d54] text-white flex flex-row hover:bg-[#6c7b88] duration-500 border border-white hover:border-transparent drop-shadow-md font-bold py-2 px-4 rounded w-48 mt-2"
               onClick={() => window.location.reload()}
             >
               Create More PDF

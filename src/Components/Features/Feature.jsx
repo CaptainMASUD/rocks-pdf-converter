@@ -36,7 +36,7 @@ const Feature = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2, duration: 0.5 }}
-            className="bg-[#824D74] p-6 rounded-lg shadow-lg"
+            className="bg-[#3e4d54] p-6 rounded-lg shadow-lg"
           >
             <feature.icon className="text-white text-3xl mb-4" />
             <h3 className="text-2xl font-semibold mb-4 text-white">{feature.title}</h3>
